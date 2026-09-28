@@ -139,7 +139,7 @@
             <div class="flex justify-between items-center mb-6 pb-4 border-b border-slate-200">
                 <div>
                     <h2 class="text-base font-bold text-slate-900">ระบบจัดการหลังบ้าน (แอดมิน)</h2>
-                    <p class="text-[11px] text-slate-500">เพิ่ม ลบ แก้ไข ไอดี RoV</p>
+                    <p class="text-[11px] text-slate-500">จัดการข้อมูลและสถานะไอดี RoV</p>
                 </div>
                 <div class="flex gap-2">
                     <button onclick="openAddModal()" class="bg-slate-900 hover:bg-slate-800 text-white px-3 py-2 rounded-xl text-xs font-bold transition shadow-xs">+ เพิ่ม</button>
@@ -174,12 +174,21 @@
                         <input type="text" id="p-badge" placeholder="#01 หรือ VIP" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-900 focus:outline-none focus:border-slate-400">
                     </div>
                 </div>
-                <div>
-                    <label class="block text-slate-600 mb-1">ขนาดกล่อง</label>
-                    <select id="p-size" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 focus:outline-none focus:border-slate-400">
-                        <option value="large">ขนาดใหญ่ (ช่องบน)</option>
-                        <option value="small">ขนาดเล็ก (ช่องล่าง)</option>
-                    </select>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-slate-600 mb-1">ขนาดกล่อง</label>
+                        <select id="p-size" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-900 focus:outline-none focus:border-slate-400">
+                            <option value="large">ขนาดใหญ่</option>
+                            <option value="small">ขนาดเล็ก</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-slate-600 mb-1">สถานะสินค้า</label>
+                        <select id="p-status" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-900 focus:outline-none focus:border-slate-400 font-semibold">
+                            <option value="available">🟢 พร้อมขาย</option>
+                            <option value="sold">🔴 ขายแล้ว</option>
+                        </select>
+                    </div>
                 </div>
                 <div>
                     <label class="block text-slate-600 mb-1">รูปภาพ (เลือกไฟล์รูป)</label>
@@ -204,6 +213,7 @@
                 price: '1,290.-',
                 badge: '#01',
                 size: 'large',
+                status: 'available', // available หรือ sold
                 image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&auto=format&fit=crop&q=80',
                 details: '• แรงค์: คอมมานเดอร์ / คอน\n• ฮีโร่: 85 ตัว\n• สกิน: 62 สกิน (มีสกินลิมิเตッドหลายตัว)'
             },
@@ -213,6 +223,7 @@
                 price: '790.-',
                 badge: '#02',
                 size: 'large',
+                status: 'sold',
                 image: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&auto=format&fit=crop&q=80',
                 details: '• แรงค์: ไดมอนด์\n• ฮีโร่: 50 ตัว\n• สกิน: 35 สกิน'
             },
@@ -222,6 +233,7 @@
                 price: '590.-',
                 badge: '#03',
                 size: 'small',
+                status: 'available',
                 image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80',
                 details: '• แรงค์: แพลตินัม\n• ฮีโร่: 30 ตัว\n• สกิน: 20 สกิน'
             },
@@ -231,6 +243,7 @@
                 price: '990.-',
                 badge: '#04',
                 size: 'small',
+                status: 'available',
                 image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&auto=format&fit=crop&q=80',
                 details: '• แรงค์: คอมมานเดอร์\n• ฮีโร่: 45 ตัว\n• สกิน: 28 สกิน'
             }
@@ -254,22 +267,33 @@
             products.forEach(item => {
                 const card = document.createElement('div');
                 const imageHeight = item.size === 'large' ? 'h-72' : 'h-48';
+                const isSold = item.status === 'sold';
                 
-                // เพิ่มแอนิเมชัน transition, hover lift ให้บล็อกดูมีชีวิตชีวา
                 card.className = `flex flex-col gap-3 group transition-all duration-300 transform hover:-translate-y-1`;
                 
                 card.innerHTML = `
-                    <div class="relative w-full rounded-[2rem] overflow-hidden bg-white border-2 border-slate-200/90 shadow-md cursor-pointer ${imageHeight} transition-all duration-300 group-hover:shadow-xl group-hover:border-slate-300" onclick="openImageModal('${item.image}')">
+                    <div class="relative w-full rounded-[2rem] overflow-hidden bg-white border-2 border-slate-200/95 shadow-md cursor-pointer ${imageHeight} transition-all duration-300 group-hover:shadow-xl group-hover:border-slate-300" onclick="openImageModal('${item.image}')">
+                        <!-- ป้ายวงกลมขวาบน -->
                         <div class="absolute top-3.5 right-3.5 z-10 w-10 h-10 rounded-full bg-white/95 backdrop-blur-md border border-slate-200 flex items-center justify-center text-slate-800 font-bold text-xs shadow-md">
                             ${item.badge || '#'}
                         </div>
-                        <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+
+                        <!-- ป้ายสถานะบนรูป (ขายแล้ว / พร้อมขาย) -->
+                        <div class="absolute top-3.5 left-3.5 z-10">
+                            ${isSold 
+                                ? `<span class="bg-red-500/90 text-white font-bold text-[10px] px-3 py-1 rounded-full backdrop-blur-md shadow-md border border-red-400 flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span> ขายแล้ว</span>`
+                                : `<span class="bg-emerald-500/90 text-white font-bold text-[10px] px-3 py-1 rounded-full backdrop-blur-md shadow-md border border-emerald-400 flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span> พร้อมขาย</span>`
+                            }
+                        </div>
+
+                        <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 ${isSold ? 'grayscale-50 brightness-90' : ''}">
+                        
                         <div class="absolute inset-0 bg-slate-950/20 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
                             <span class="bg-white/95 text-slate-800 text-[11px] px-3 py-1.5 rounded-full backdrop-blur-md border border-slate-200 shadow-xs">คลิกดูรูปใหญ่</span>
                         </div>
                     </div>
 
-                    <div class="bg-white border-2 border-slate-200/90 rounded-2xl p-4 shadow-xs flex flex-col justify-between transition-all duration-300 group-hover:shadow-md">
+                    <div class="bg-white border-2 border-slate-200/95 rounded-2xl p-4 shadow-xs flex flex-col justify-between transition-all duration-300 group-hover:shadow-md">
                         <div>
                             <div class="flex justify-between items-start mb-1.5 gap-2">
                                 <h3 class="font-bold text-slate-900 text-sm leading-snug">${item.title}</h3>
@@ -277,9 +301,11 @@
                             </div>
                             <p class="text-[11px] text-slate-600 whitespace-pre-line leading-relaxed mb-3">${item.details}</p>
                         </div>
-                        <button onclick="openContactModal('${item.title}')" class="w-full py-2.5 bg-slate-900 hover:bg-slate-800 active:scale-95 text-white font-bold rounded-xl transition duration-200 shadow-xs text-xs tracking-wide">
-                            กดสั่งซื้อ
-                        </button>
+                        
+                        ${isSold 
+                            ? `<button disabled class="w-full py-2.5 bg-slate-200 text-slate-400 font-bold rounded-xl text-xs cursor-not-allowed">สินค้าขายแล้ว</button>`
+                            : `<button onclick="openContactModal('${item.title}')" class="w-full py-2.5 bg-slate-900 hover:bg-slate-800 active:scale-95 text-white font-bold rounded-xl transition duration-200 shadow-xs text-xs tracking-wide">กดสั่งซื้อ</button>`
+                        }
                     </div>
                 `;
                 grid.appendChild(card);
@@ -342,12 +368,14 @@
             products.forEach((item) => {
                 const div = document.createElement('div');
                 div.className = "bg-slate-50 border border-slate-200 rounded-2xl p-3.5 flex items-center justify-between gap-3";
+                const isSold = item.status === 'sold';
+                
                 div.innerHTML = `
                     <div class="flex items-center gap-3">
                         <img src="${item.image}" class="w-12 h-12 object-cover rounded-xl border border-slate-200">
                         <div>
                             <h4 class="font-bold text-slate-900 text-xs">${item.title} <span class="text-[11px] text-slate-500 font-normal">(${item.price})</span></h4>
-                            <p class="text-[10px] text-slate-400">ป้าย: ${item.badge || '-'} | ขนาด: ${item.size}</p>
+                            <p class="text-[10px] text-slate-400">ป้าย: ${item.badge || '-'} | สถานะ: <span class="${isSold ? 'text-red-500 font-bold' : 'text-emerald-600 font-bold'}">${isSold ? 'ขายแล้ว' : 'พร้อมขาย'}</span></p>
                         </div>
                     </div>
                     <div class="flex gap-1.5">
@@ -363,6 +391,7 @@
             document.getElementById('form-title').innerText = 'เพิ่มไอดีใหม่';
             document.getElementById('product-form').reset();
             document.getElementById('edit-id').value = '';
+            document.getElementById('p-status').value = 'available';
             document.getElementById('product-form-modal').classList.remove('hidden');
         }
 
@@ -376,6 +405,7 @@
             document.getElementById('p-price').value = item.price;
             document.getElementById('p-badge').value = item.badge || '';
             document.getElementById('p-size').value = item.size || 'large';
+            document.getElementById('p-status').value = item.status || 'available';
             document.getElementById('p-image-url').value = item.image.startsWith('http') ? item.image : '';
             document.getElementById('p-details').value = item.details;
             
@@ -393,6 +423,7 @@
             const price = document.getElementById('p-price').value;
             const badge = document.getElementById('p-badge').value;
             const size = document.getElementById('p-size').value;
+            const status = document.getElementById('p-status').value;
             const imageUrlInput = document.getElementById('p-image-url').value;
             const imageFile = document.getElementById('p-image-file').files[0];
             const details = document.getElementById('p-details').value;
@@ -401,7 +432,7 @@
                 const finalImage = imageUrl || (editId ? products.find(p => p.id === editId).image : 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&auto=format&fit=crop&q=80');
 
                 if (editId) {
-                    products = products.map(p => p.id === editId ? { ...p, title, price, badge, size, image: finalImage, details } : p);
+                    products = products.map(p => p.id === editId ? { ...p, title, price, badge, size, status, image: finalImage, details } : p);
                 } else {
                     const newItem = {
                         id: Date.now().toString(),
@@ -409,6 +440,7 @@
                         price,
                         badge,
                         size,
+                        status,
                         image: finalImage,
                         details
                     };
