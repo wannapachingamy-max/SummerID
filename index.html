@@ -93,18 +93,18 @@
             <p class="text-xs text-slate-500 mb-5" id="modal-item-title">สนใจไอดีนี้ สามารถติดต่อเราได้ผ่านช่องทางด้านล่าง:</p>
             
             <div class="space-y-3">
-                <a href="https://line.me" target="_blank" class="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-400 transition text-slate-800 group">
+                <a href="https://lin.ee/xMpT4kF" target="_blank" class="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-400 transition text-slate-800 group">
                     <span class="font-bold text-base group-hover:scale-105 transition text-emerald-600">💚 LINE:</span>
-                    <span class="text-xs text-slate-600">@summershop (คลิกเพื่อแอดไลน์)</span>
+                    <span class="text-xs text-slate-600">คลิกเพื่อแอดไลน์ร้าน</span>
                 </a>
-                <a href="https://facebook.com" target="_blank" class="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-400 transition text-slate-800 group">
+                <a href="https://www.facebook.com/share/19irMwU74a/?mibextid=wwXIfr" target="_blank" class="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-400 transition text-slate-800 group">
                     <span class="font-bold text-base group-hover:scale-105 transition text-blue-600">💙 Facebook:</span>
-                    <span class="text-xs text-slate-600">ร้านไอดี Rov Summer</span>
+                    <span class="text-xs text-slate-600">คลิกเพื่อไปที่เฟซบุ๊กเพจ</span>
                 </a>
-                <div class="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-50 border border-slate-200 text-slate-800">
-                    <span class="font-bold text-base text-slate-700">📞 โทร:</span>
-                    <span class="text-xs text-slate-600">08x-xxx-xxxx</span>
-                </div>
+                <a href="https://x.com/summerluvcat?s=11" target="_blank" class="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-400 transition text-slate-800 group">
+                    <span class="font-bold text-base group-hover:scale-105 transition text-slate-900">🖤 X (Twitter):</span>
+                    <span class="text-xs text-slate-600">คลิกเพื่อไปที่ทวิตเตอร์ร้าน</span>
+                </a>
             </div>
 
             <button onclick="closeContactModal()" class="w-full mt-6 py-3 bg-slate-900 hover:bg-slate-800 text-white font-medium rounded-2xl transition text-xs shadow-md">
@@ -213,7 +213,7 @@
                 price: '1,290.-',
                 badge: '#01',
                 size: 'large',
-                status: 'available', // available หรือ sold
+                status: 'available',
                 image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&auto=format&fit=crop&q=80',
                 details: '• แรงค์: คอมมานเดอร์ / คอน\n• ฮีโร่: 85 ตัว\n• สกิน: 62 สกิน (มีสกินลิมิเตッドหลายตัว)'
             },
@@ -273,12 +273,10 @@
                 
                 card.innerHTML = `
                     <div class="relative w-full rounded-[2rem] overflow-hidden bg-white border-2 border-slate-200/95 shadow-md cursor-pointer ${imageHeight} transition-all duration-300 group-hover:shadow-xl group-hover:border-slate-300" onclick="openImageModal('${item.image}')">
-                        <!-- ป้ายวงกลมขวาบน -->
                         <div class="absolute top-3.5 right-3.5 z-10 w-10 h-10 rounded-full bg-white/95 backdrop-blur-md border border-slate-200 flex items-center justify-center text-slate-800 font-bold text-xs shadow-md">
                             ${item.badge || '#'}
                         </div>
 
-                        <!-- ป้ายสถานะบนรูป (ขายแล้ว / พร้อมขาย) -->
                         <div class="absolute top-3.5 left-3.5 z-10">
                             ${isSold 
                                 ? `<span class="bg-red-500/90 text-white font-bold text-[10px] px-3 py-1 rounded-full backdrop-blur-md shadow-md border border-red-400 flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span> ขายแล้ว</span>`
