@@ -11,81 +11,99 @@
     <style>
         body {
             font-family: 'Prompt', sans-serif;
-            background-color: #0b0f19;
-            color: #f3f4f6;
+            background-color: #0f1013;
+            color: #e5e7eb;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(100, 116, 139, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 20% 80%, rgba(75, 85, 99, 0.1) 0%, transparent 40%);
+            background-attachment: fixed;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f1013;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4b5563;
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-orange-500 selection:text-white">
+<body class="min-h-screen flex flex-col justify-between selection:bg-slate-400 selection:text-black">
 
     <!-- Top Bar -->
-    <header class="bg-slate-900/80 backdrop-blur border-b border-slate-800 sticky top-0 z-40">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-            <h1 class="text-xl md:text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-300 to-yellow-500">
-                ไอดี Rov ร้าน Summer
+    <header class="bg-slate-950/80 backdrop-blur-md border-b border-slate-800/80 sticky top-0 z-40 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 py-3.5 flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-slate-100 via-slate-300 to-slate-500 drop-shadow-sm">
+                ✦ ไอดี Rov ร้าน Summer ✦
             </h1>
-            <button onclick="openAdminLogin()" class="text-xs text-slate-400 hover:text-orange-400 border border-slate-700 hover:border-orange-500 px-2.5 py-1 rounded transition">
+            <button onclick="openAdminLogin()" class="text-xs text-slate-400 hover:text-slate-100 border border-slate-800 hover:border-slate-600 bg-slate-900/50 hover:bg-slate-800 px-3 py-1.5 rounded-lg transition shadow-sm">
                 แอดมิน
             </button>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="max-w-5xl mx-auto px-4 py-8 flex-grow w-full">
+    <main class="max-w-5xl mx-auto px-4 py-10 flex-grow w-full">
         <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <!-- Items will be dynamically injected here -->
         </div>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 border-t border-slate-800 text-center py-4 text-xs text-slate-500">
+    <footer class="bg-slate-950 border-t border-slate-900 text-center py-6 text-xs text-slate-500 tracking-wider">
         © 2026 ไอดี Rov ร้าน Summer. All rights reserved.
     </footer>
 
     <!-- Modal: Contact (Purchase) -->
-    <div id="contact-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-md w-full p-6 relative shadow-2xl animate-in fade-in zoom-in duration-200">
-            <button onclick="closeContactModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl font-bold">&times;</button>
-            <h3 class="text-xl font-bold text-orange-400 mb-2">ช่องทางติดต่อสั่งซื้อ</h3>
-            <p class="text-sm text-slate-300 mb-6" id="modal-item-title">สนใจไอดีนี้ สามารถติดต่อเราได้ผ่านช่องทางด้านล่าง:</p>
+    <div id="contact-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-md w-full p-6 relative shadow-2xl animate-in fade-in zoom-in duration-200">
+            <button onclick="closeContactModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl font-bold w-8 h-8 rounded-full bg-slate-800/50 flex items-center justify-center transition">&times;</button>
+            <h3 class="text-lg font-bold text-slate-100 mb-2">ช่องทางติดต่อสั่งซื้อ</h3>
+            <p class="text-xs text-slate-400 mb-6" id="modal-item-title">สนใจไอดีนี้ สามารถติดต่อเราได้ผ่านช่องทางด้านล่าง:</p>
             
             <div class="space-y-3">
-                <a href="https://line.me" target="_blank" class="flex items-center gap-3 p-3 rounded-xl bg-emerald-600/20 border border-emerald-500/30 hover:bg-emerald-600/30 transition text-emerald-300">
-                    <span class="font-bold text-lg">💚 LINE:</span>
-                    <span>@summershop (คลิกเพื่อแอดไลน์)</span>
+                <a href="https://line.me" target="_blank" class="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-950/60 border border-slate-800 hover:border-slate-600 transition text-slate-200 group">
+                    <span class="font-bold text-base group-hover:scale-105 transition">💚 LINE:</span>
+                    <span class="text-xs text-slate-300">@summershop (คลิกเพื่อแอดไลน์)</span>
                 </a>
-                <a href="https://facebook.com" target="_blank" class="flex items-center gap-3 p-3 rounded-xl bg-blue-600/20 border border-blue-500/30 hover:bg-blue-600/30 transition text-blue-300">
-                    <span class="font-bold text-lg">💙 Facebook:</span>
-                    <span>ร้านไอดี Rov Summer</span>
+                <a href="https://facebook.com" target="_blank" class="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-950/60 border border-slate-800 hover:border-slate-600 transition text-slate-200 group">
+                    <span class="font-bold text-base group-hover:scale-105 transition">💙 Facebook:</span>
+                    <span class="text-xs text-slate-300">ร้านไอดี Rov Summer</span>
                 </a>
-                <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-800 border border-slate-700 text-slate-200">
-                    <span class="font-bold text-lg">📞 โทร:</span>
-                    <span>08x-xxx-xxxx</span>
+                <div class="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-950/60 border border-slate-800 text-slate-200">
+                    <span class="font-bold text-base">📞 โทร:</span>
+                    <span class="text-xs text-slate-300">08x-xxx-xxxx</span>
                 </div>
             </div>
 
-            <button onclick="closeContactModal()" class="w-full mt-6 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl font-medium transition">
+            <button onclick="closeContactModal()" class="w-full mt-6 py-3 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-2xl font-medium transition text-xs">
                 ปิดหน้าต่าง
             </button>
         </div>
     </div>
 
     <!-- Modal: Image Preview -->
-    <div id="image-modal" class="fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center p-4" onclick="closeImageModal()">
-        <img id="preview-img-full" src="" class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl">
+    <div id="image-modal" class="fixed inset-0 bg-black/95 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 cursor-zoom-out" onclick="closeImageModal()">
+        <img id="preview-img-full" src="" class="max-w-full max-h-[90vh] object-contain rounded-2xl shadow-2xl border border-slate-800">
     </div>
 
     <!-- Modal: Admin Login -->
-    <div id="admin-login-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-sm w-full p-6 relative shadow-2xl">
+    <div id="admin-login-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-sm w-full p-6 relative shadow-2xl">
             <button onclick="closeAdminLogin()" class="absolute top-4 right-4 text-slate-400 hover:text-white">&times;</button>
-            <h3 class="text-lg font-bold text-white mb-4">เข้าสู่ระบบแอดมิน</h3>
+            <h3 class="text-base font-bold text-slate-100 mb-4">เข้าสู่ระบบแอดมิน</h3>
             <form onsubmit="handleAdminLogin(event)" class="space-y-4">
                 <div>
                     <label class="block text-xs text-slate-400 mb-1">รหัสผ่านแอดมิน (admin123)</label>
-                    <input type="password" id="admin-pass" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:border-orange-500">
+                    <input type="password" id="admin-pass" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-white text-xs focus:outline-none focus:border-slate-500 transition">
                 </div>
-                <button type="submit" class="w-full py-2.5 bg-orange-600 hover:bg-orange-500 text-white font-bold rounded-xl transition text-sm">เข้าสู่ระบบ</button>
+                <button type="submit" class="w-full py-2.5 bg-slate-100 hover:bg-white text-slate-950 font-bold rounded-xl transition text-xs shadow-lg">เข้าสู่ระบบ</button>
             </form>
         </div>
     </div>
@@ -95,12 +113,12 @@
         <div class="max-w-4xl mx-auto">
             <div class="flex justify-between items-center mb-6 pb-4 border-b border-slate-800">
                 <div>
-                    <h2 class="text-xl font-bold text-orange-400">ระบบจัดการหลังบ้าน (แอดมิน)</h2>
+                    <h2 class="text-lg font-bold text-slate-100">ระบบจัดการหลังบ้าน (แอดมิน)</h2>
                     <p class="text-xs text-slate-400">เพิ่ม ลบ แก้ไข ไอดี RoV ในร้าน</p>
                 </div>
                 <div class="flex gap-2">
-                    <button onclick="openAddModal()" class="bg-orange-600 hover:bg-orange-500 text-white px-4 py-2 rounded-xl text-sm font-bold transition">+ เพิ่มไอดีใหม่</button>
-                    <button onclick="closeAdminDashboard()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-4 py-2 rounded-xl text-sm transition">ออกจากระบบ</button>
+                    <button onclick="openAddModal()" class="bg-slate-100 hover:bg-white text-slate-950 px-4 py-2 rounded-xl text-xs font-bold transition shadow-sm">+ เพิ่มไอดีใหม่</button>
+                    <button onclick="closeAdminDashboard()" class="bg-slate-900 hover:bg-slate-800 text-slate-300 px-4 py-2 rounded-xl text-xs border border-slate-800 transition">ออกจากระบบ</button>
                 </div>
             </div>
 
@@ -111,51 +129,51 @@
     </div>
 
     <!-- Modal: Add/Edit Product -->
-    <div id="product-form-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full p-6 relative max-h-[90vh] overflow-y-auto">
+    <div id="product-form-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-lg w-full p-6 relative max-h-[90vh] overflow-y-auto shadow-2xl">
             <button onclick="closeProductForm()" class="absolute top-4 right-4 text-slate-400 hover:text-white">&times;</button>
-            <h3 id="form-title" class="text-lg font-bold text-white mb-4">เพิ่มไอดีใหม่</h3>
-            <form id="product-form" onsubmit="saveProduct(event)" class="space-y-4 text-sm">
+            <h3 id="form-title" class="text-base font-bold text-slate-100 mb-4">เพิ่มไอดีใหม่</h3>
+            <form id="product-form" onsubmit="saveProduct(event)" class="space-y-4 text-xs">
                 <input type="hidden" id="edit-id">
                 <div>
-                    <label class="block text-xs text-slate-400 mb-1">ชื่อไอดี / หัวข้อ</label>
-                    <input type="text" id="p-title" required placeholder="เช่น ไอดี #01 สายแทงค์แรงค์คอน" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-white">
+                    <label class="block text-slate-400 mb-1">ชื่อไอดี / หัวข้อ</label>
+                    <input type="text" id="p-title" required placeholder="เช่น ไอดี #01 สายแทงค์แรงค์คอน" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-slate-600">
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs text-slate-400 mb-1">ราคา (บาท)</label>
-                        <input type="text" id="p-price" required placeholder="เช่น 890.-" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-white">
+                        <label class="block text-slate-400 mb-1">ราคา (บาท)</label>
+                        <input type="text" id="p-price" required placeholder="เช่น 890.-" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-slate-600">
                     </div>
                     <div>
-                        <label class="block text-xs text-slate-400 mb-1">ป้ายกำกับมุมขวาบน</label>
-                        <input type="text" id="p-badge" placeholder="เช่น #01 หรือ VIP" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-white">
+                        <label class="block text-slate-400 mb-1">ป้ายกำกับมุมขวาบน</label>
+                        <input type="text" id="p-badge" placeholder="เช่น #01 หรือ VIP" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-slate-600">
                     </div>
                 </div>
                 <div>
-                    <label class="block text-xs text-slate-400 mb-1">ขนาดกล่องแสดงผล</label>
-                    <select id="p-size" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-white">
+                    <label class="block text-slate-400 mb-1">ขนาดกล่องแสดงผล</label>
+                    <select id="p-size" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-slate-600">
                         <option value="large">ขนาดใหญ่ (ช่องหลัก)</option>
                         <option value="small">ขนาดเล็ก (ช่องย่อย)</option>
                     </select>
                 </div>
                 <div>
-                    <label class="block text-xs text-slate-400 mb-1">รูปภาพไอดี (เลือกไฟล์รูป)</label>
-                    <input type="file" id="p-image-file" accept="image/*" class="w-full text-xs text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-orange-600 file:text-white hover:file:bg-orange-500 cursor-pointer">
+                    <label class="block text-slate-400 mb-1">รูปภาพไอดี (เลือกไฟล์รูป)</label>
+                    <input type="file" id="p-image-file" accept="image/*" class="w-full text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-slate-800 file:text-slate-200 hover:file:bg-slate-700 cursor-pointer">
                     <p class="text-[10px] text-slate-500 mt-1">หรือใส่ลิงก์รูปภาพด้านล่าง:</p>
-                    <input type="text" id="p-image-url" placeholder="https://..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-white mt-1">
+                    <input type="text" id="p-image-url" placeholder="https://..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-white mt-1 focus:outline-none focus:border-slate-600">
                 </div>
                 <div>
-                    <label class="block text-xs text-slate-400 mb-1">รายละเอียดไอดี</label>
-                    <textarea id="p-details" rows="4" placeholder="ระบุฮีโร่, สกิน, รูน หรือรายละเอียดอื่นๆ..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-white"></textarea>
+                    <label class="block text-slate-400 mb-1">รายละเอียดไอดี</label>
+                    <textarea id="p-details" rows="4" placeholder="ระบุฮีโร่, สกิน, รูน หรือรายละเอียดอื่นๆ..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-slate-600"></textarea>
                 </div>
-                <button type="submit" class="w-full py-2.5 bg-orange-600 hover:bg-orange-500 text-white font-bold rounded-xl transition">บันทึกข้อมูล</button>
+                <button type="submit" class="w-full py-3 bg-slate-100 hover:bg-white text-slate-950 font-bold rounded-xl transition shadow-lg text-xs">บันทึกข้อมูล</button>
             </form>
         </div>
     </div>
 
     <!-- Script Application Logic -->
     <script>
-        // Default Sample Data if LocalStorage is empty
+        // Default Sample Data (คงข้อมูลเดิมไว้ 100%)
         const defaultProducts = [
             {
                 id: '1',
@@ -189,43 +207,43 @@
             grid.innerHTML = '';
 
             if (products.length === 0) {
-                grid.innerHTML = `<div class="col-span-full text-center py-12 text-slate-500">ยังไม่มีสินค้าในขณะนี้</div>`;
+                grid.innerHTML = `<div class="col-span-full text-center py-16 text-slate-500 text-xs tracking-wider">ยังไม่มีสินค้าในขณะนี้</div>`;
                 return;
             }
 
             products.forEach(item => {
                 const card = document.createElement('div');
-                card.className = `bg-slate-900/90 border border-slate-800 rounded-3xl p-5 flex flex-col justify-between shadow-xl relative overflow-hidden group`;
+                card.className = `bg-slate-900/60 backdrop-blur-sm border border-slate-800/80 rounded-3xl p-5 flex flex-col justify-between shadow-xl relative overflow-hidden group hover:border-slate-700 transition duration-300`;
                 
                 const imageHeight = item.size === 'large' ? 'h-72 md:h-80' : 'h-56';
 
                 card.innerHTML = `
                     <!-- Badge Corner -->
-                    <div class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-slate-950/80 backdrop-blur border border-slate-700 flex items-center justify-center text-orange-400 font-bold text-xs shadow-lg">
+                    <div class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-slate-950/80 backdrop-blur-md border border-slate-700/80 flex items-center justify-center text-slate-200 font-bold text-xs shadow-lg">
                         ${item.badge || '#'}
                     </div>
 
                     <div>
                         <!-- Image Box -->
-                        <div class="${imageHeight} w-full rounded-2xl overflow-hidden bg-slate-950 mb-4 cursor-pointer relative border border-slate-800" onclick="openImageModal('${item.image}')">
-                            <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                            <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-                                <span class="bg-black/60 text-white text-xs px-3 py-1.5 rounded-full backdrop-blur">คลิกดูรูปใหญ่</span>
+                        <div class="${imageHeight} w-full rounded-2xl overflow-hidden bg-slate-950 mb-4 cursor-pointer relative border border-slate-800/60 shadow-inner" onclick="openImageModal('${item.image}')">
+                            <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                                <span class="bg-black/70 text-slate-200 text-[11px] px-3.5 py-1.5 rounded-full backdrop-blur-md border border-slate-700">คลิกดูรูปใหญ่</span>
                             </div>
                         </div>
 
                         <!-- Details Box -->
-                        <div class="bg-slate-950/60 border border-slate-800/80 rounded-2xl p-4 mb-4">
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="font-bold text-white text-base">${item.title}</h3>
-                                <span class="text-orange-400 font-extrabold text-base">${item.price}</span>
+                        <div class="bg-slate-950/40 border border-slate-800/60 rounded-2xl p-4 mb-4">
+                            <div class="flex justify-between items-start mb-2 gap-2">
+                                <h3 class="font-bold text-slate-100 text-sm md:text-base leading-snug">${item.title}</h3>
+                                <span class="text-slate-200 font-extrabold text-sm whitespace-nowrap bg-slate-800/60 px-2.5 py-1 rounded-xl border border-slate-700/50">${item.price}</span>
                             </div>
-                            <p class="text-xs text-slate-300 whitespace-pre-line leading-relaxed">${item.details}</p>
+                            <p class="text-xs text-slate-400 whitespace-pre-line leading-relaxed">${item.details}</p>
                         </div>
                     </div>
 
                     <!-- Buy Button -->
-                    <button onclick="openContactModal('${item.title}')" class="w-full py-3 bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white font-bold rounded-xl transition shadow-lg shadow-orange-600/20 text-sm">
+                    <button onclick="openContactModal('${item.title}')" class="w-full py-3 bg-slate-100 hover:bg-white text-slate-950 font-bold rounded-2xl transition duration-300 shadow-md text-xs tracking-wide">
                         กดสั่งซื้อ
                     </button>
                 `;
@@ -284,24 +302,24 @@
             list.innerHTML = '';
 
             if (products.length === 0) {
-                list.innerHTML = `<div class="text-center py-8 text-slate-500 text-sm">ยังไม่มีรายการไอดีในระบบ</div>`;
+                list.innerHTML = `<div class="text-center py-8 text-slate-500 text-xs">ยังไม่มีรายการไอดีในระบบ</div>`;
                 return;
             }
 
-            products.forEach((item, index) => {
+            products.forEach((item) => {
                 const div = document.createElement('div');
                 div.className = "bg-slate-900 border border-slate-800 rounded-2xl p-4 flex items-center justify-between gap-4";
                 div.innerHTML = `
                     <div class="flex items-center gap-4">
                         <img src="${item.image}" class="w-14 h-14 object-cover rounded-xl border border-slate-800">
                         <div>
-                            <h4 class="font-bold text-white text-sm">${item.title} <span class="text-xs text-orange-400 font-normal">(${item.price})</span></h4>
-                            <p class="text-xs text-slate-400">ป้าย: ${item.badge || '-'} | ขนาด: ${item.size}</p>
+                            <h4 class="font-bold text-slate-100 text-xs md:text-sm">${item.title} <span class="text-xs text-slate-400 font-normal">(${item.price})</span></h4>
+                            <p class="text-[11px] text-slate-400">ป้าย: ${item.badge || '-'} | ขนาด: ${item.size}</p>
                         </div>
                     </div>
                     <div class="flex gap-2">
-                        <button onclick="editProduct('${item.id}')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg text-xs transition">แก้ไข</button>
-                        <button onclick="deleteProduct('${item.id}')" class="bg-red-600/20 hover:bg-red-600/30 text-red-400 border border-red-500/30 px-3 py-1.5 rounded-lg text-xs transition">ลบ</button>
+                        <button onclick="editProduct('${item.id}')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-xl text-xs transition">แก้ไข</button>
+                        <button onclick="deleteProduct('${item.id}')" class="bg-red-950/40 hover:bg-red-900/40 text-red-400 border border-red-900/50 px-3 py-1.5 rounded-xl text-xs transition">ลบ</button>
                     </div>
                 `;
                 list.appendChild(div);
