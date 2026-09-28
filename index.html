@@ -125,8 +125,8 @@
             <h3 class="text-sm font-bold text-slate-900 mb-4">เข้าสู่ระบบแอดมิน</h3>
             <form onsubmit="handleAdminLogin(event)" class="space-y-4">
                 <div>
-                    <label class="block text-[11px] text-slate-500 mb-1">รหัสผ่านแอดมิน (admin123)</label>
-                    <input type="password" id="admin-pass" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 text-xs focus:outline-none focus:border-slate-400 transition">
+                    <label class="block text-[11px] text-slate-500 mb-1">รหัสผ่านแอดมิน</label>
+                    <input type="password" id="admin-pass" required placeholder="••••••••" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-slate-900 text-xs focus:outline-none focus:border-slate-400 transition">
                 </div>
                 <button type="submit" class="w-full py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl transition text-xs shadow-lg">เข้าสู่ระบบ</button>
             </form>
@@ -336,7 +336,7 @@
         function handleAdminLogin(e) {
             e.preventDefault();
             const pass = document.getElementById('admin-pass').value;
-            if (pass === 'admin123') {
+            if (pass === 'summer1111') {
                 closeAdminLogin();
                 document.getElementById('admin-pass').value = '';
                 openAdminDashboard();
